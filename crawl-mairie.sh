@@ -26,7 +26,7 @@ function async_curl() {
 
 async_curl "Mairie Centre - Victor Hugo" "site7" &
 async_curl "Mairie de quartier Blosne" "site3" &
-async_curl "Mairie de quartier Bréquigny" "site8" &
+async_curl "Mairie de quartier Brequigny" "site8" &
 async_curl "Mairie de quartier Maurepas Europe" "site2" &
 async_curl "Mairie de quartier Villejean" "site4" &
 
