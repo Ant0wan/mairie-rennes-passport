@@ -14,10 +14,10 @@ curl -L -c rennes.txt 'https://eappointment2.rennes.fr/eAppointment/appointment.
 
 # Mairie Centre - Victor Hugo: site7
 function async_curl() {
-	curl -L -b rennes.txt 'https://eappointment2.rennes.fr/eAppointment/dwr/call/plaincall/AjaxSelectionFormFeeder.getClosedDaysList.dwr' --data-raw $'callCount=1\nnextReverseAjaxIndex=0\nc0-scriptName=AjaxSelectionFormFeeder\nc0-methodName=getClosedDaysList\nc0-id=0\nc0-param0=string:site7\nc0-param1=string:20012\nbatchId=5\ninstanceId=0\npage=%2FeAppointment%2Felement%2Fjsp%2Fappointment.jsp\nscriptSessionId=\n' 2> /dev/null | grep 'handleCallback' | grep -oE '[0-9]{4}-0(3|4)-[0-9]{2}' > site7
-	if ! site7=$(diff site7 date); then
-		dispo "$1: " "$site7" true
-		notify-send "$1" "$rdvlink $site7"
+	curl -L -b rennes.txt 'https://eappointment2.rennes.fr/eAppointment/dwr/call/plaincall/AjaxSelectionFormFeeder.getClosedDaysList.dwr' --data-raw $'callCount=1\nnextReverseAjaxIndex=0\nc0-scriptName=AjaxSelectionFormFeeder\nc0-methodName=getClosedDaysList\nc0-id=0\nc0-param0=string:site7\nc0-param1=string:20012\nbatchId=5\ninstanceId=0\npage=%2FeAppointment%2Felement%2Fjsp%2Fappointment.jsp\nscriptSessionId=\n' 2> /dev/null | grep 'handleCallback' | grep -oE '[0-9]{4}-0(3|4)-[0-9]{2}' > "$2"
+	if ! site=$(diff $2 date); then
+		dispo "$1: " "$site" true
+		notify-send "$1" "$rdvlink $site"
 	else
 		dispo "$1: " "Pas de RDV" false
 	fi
